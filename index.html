@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trò chơi Kéo Búa Bao</title>
+    <script>
+        function playGame() {
+            var choices = ["Kéo", "Búa", "Bao"];
+            var userChoice = document.querySelector('input[name="choice"]:checked').value;
+            var compChoice = Math.floor(Math.random() * 3);
+
+            var userChoiceName = choices[userChoice];
+            var compChoiceName = choices[compChoice];
+
+            var result = "";
+
+            if (userChoice == compChoice) {
+                result = "HÒA";
+            } else if ((userChoice == 0 && compChoice == 1) || (userChoice == 1 && compChoice == 0)) {
+                result = 'Búa';
+            } else if ((userChoice == 0 && compChoice == 2) || (userChoice == 2 && compChoice == 0)) {
+                result = 'Kéo';
+            } else {
+                result = 'Bao';
+            }
+
+            var winner = "";
+
+            if (result == "HÒA") {
+                winner = "Hòa rồi!";
+            } else if (result == choices[userChoice]) {
+                winner = "Người chơi thắng!";
+            } else {
+                winner = "Máy tính thắng!";
+            }
+
+            document.getElementById("result").innerHTML = "<h2>Kết quả:</h2><p>Người chơi chọn: " + userChoiceName + "</p><p>Máy tính chọn: " + compChoiceName + "</p><h3>" + winner + "</h3>";
+        }
+    </script>
+</head>
+<body>
+    <h1>Trò chơi Kéo Búa Bao</h1>
+    <form>
+        <label for="rock">Kéo</label>
+        <input type="radio" id="rock" name="choice" value="0">
+        <label for="paper">Búa</label>
+        <input type="radio" id="paper" name="choice" value="1">
+        <label for="scissors">Bao</label>
+        <input type="radio" id="scissors" name="choice" value="2"><br><br>
+        <input type="button" value="Chơi" onclick="playGame()">
+    </form>
+    <div id="result"></div>
+</body>
+</html>
